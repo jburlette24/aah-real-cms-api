@@ -15,16 +15,16 @@ namespace aah_real_cms_api.Controllers
     {
 
         private readonly ILogger<ContentController> _logger;
-        private readonly ContentService _contentService;
+        private readonly IContentService _contentService;
 
-        public ContentController(ILogger<ContentController> logger, ContentService contentService)
+        public ContentController(ILogger<ContentController> logger, IContentService contentService)
         {
             _logger = logger;
             _contentService = contentService;
         }
 
         [HttpGet]
-        public List<Post> GetPosts()
+        public List<Post> Content()
         {
             _logger.Log(LogLevel.Debug, "hit contentService.getPosts");
             return _contentService.GetPosts();
