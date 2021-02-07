@@ -6,6 +6,8 @@ using aah_real_cms_api.Models;
 using aah_real_cms_api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace aah_real_cms_api.Controllers
 {
@@ -23,6 +25,7 @@ namespace aah_real_cms_api.Controllers
             _contentService = contentService;
         }
 
+        //[EnableCors("AllowOrigin")]
         [HttpGet]
         public List<Post> Content()
         {

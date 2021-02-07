@@ -29,7 +29,7 @@ namespace aah_real_cms_api.Services
                 new Post() {
                     Date = DateTime.Parse("06/22/1984"),
                     Authors = authors,
-                    Title = "First Post",
+                    Title = "Second Post",
                     Text = "This is my Second Post"
                 }
             };
