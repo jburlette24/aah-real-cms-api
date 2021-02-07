@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace aah_real_cms_api.Models
+namespace aah_real_cms_api.Domain.Models
 {
     public class Post
     {

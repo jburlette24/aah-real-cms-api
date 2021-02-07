@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using aah_real_cms_api.Models;
-using aah_real_cms_api.Services;
+using aah_real_cms_api.Domain.Models;
+using aah_real_cms_api.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Cors;
 
 
 namespace aah_real_cms_api.Controllers
@@ -25,12 +24,11 @@ namespace aah_real_cms_api.Controllers
             _contentService = contentService;
         }
 
-        //[EnableCors("AllowOrigin")]
         [HttpGet]
-        public List<Post> Content()
+        public async Task<IEnumerable<Post>> Content()
         {
             _logger.Log(LogLevel.Debug, "hit contentService.getPosts");
-            return _contentService.GetPosts();
+            return await _contentService.GetPosts();
         }
     }
 }

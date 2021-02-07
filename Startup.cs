@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using aah_real_cms_api.Services;
+using aah_real_cms_api.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,11 +29,11 @@ namespace aah_real_cms_api
 
             services.AddCors(options =>
                 {
-                    options.AddPolicy("foo",
+                    options.AddPolicy("dev",
                     builder =>
                     {
                         // Not a permanent solution, but just trying to isolate the problem
-                        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
                     });
                 });
             services.AddScoped<IContentService, ContentService>();
@@ -51,7 +51,7 @@ namespace aah_real_cms_api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors("foo");
+            app.UseCors("dev");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
