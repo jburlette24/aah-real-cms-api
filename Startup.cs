@@ -10,7 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cors;
-
+using Microsoft.EntityFrameworkCore;
+using aah_real_cms_api.Persistence.Contexts;
+using aah_real_cms_api.Domain.Repositories;
+using aah_real_cms_api.Persistence.Repositories;
 
 namespace aah_real_cms_api
 {
@@ -36,6 +39,10 @@ namespace aah_real_cms_api
                         builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
                     });
                 });
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseInMemoryDatabase("aah-real-cms-api-in-memory");
+            });
+            services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IContentService, ContentService>();
             services.AddControllers();
         }

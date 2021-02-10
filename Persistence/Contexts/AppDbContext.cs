@@ -1,13 +1,13 @@
 using aah_real_cms_api.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.JSInterop;
 
 namespace aah_real_cms_api.Persistence.Contexts
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Author> Authors {get; set;}
-
-        public DbSet<Post> Posts {get; set;}
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -21,6 +21,10 @@ namespace aah_real_cms_api.Persistence.Contexts
             builder.Entity<Author>().Property(p => p.Surname).IsRequired();
             builder.Entity<Author>().Property(p => p.BioBlurb);
 
+            builder.Entity<Author>().HasData
+            (
+                new Author { Id = 100, Name = "Jim", Surname = "Burlette", BioBlurb = "He was born upon the shores of the Connecticut..." }
+            );
 
             builder.Entity<Post>().ToTable("Posts");
             builder.Entity<Post>().HasKey(p => p.Id);
