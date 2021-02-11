@@ -5,10 +5,12 @@ namespace aah_real_cms_api.Domain.Models
 {
     public class Post
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime PublicationDate { get; set; }
 
-        public List<Author> Authors { get; set; }
+        public virtual Author Author { get; set; }
+
+        public int AuthorId {get; set; }
 
         public string Title { get; set; }
 

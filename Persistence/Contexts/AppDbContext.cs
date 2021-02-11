@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using aah_real_cms_api.Domain.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop;
 
@@ -29,9 +32,13 @@ namespace aah_real_cms_api.Persistence.Contexts
             builder.Entity<Post>().ToTable("Posts");
             builder.Entity<Post>().HasKey(p => p.Id);
             builder.Entity<Post>().Property(p => p.PublicationDate);
-            builder.Entity<Post>().HasMany(p => p.Authors);
             builder.Entity<Post>().Property(p => p.Title).IsRequired().HasMaxLength(50);
             builder.Entity<Post>().Property(p => p.Text);
+
+            builder.Entity<Post>().HasData
+            (
+                new Post {Id = 100, PublicationDate = DateTime.Parse("05/22/1987"), AuthorId = 100, Title = "First Post", Text = "This post is the real deal."}
+            );
         }
     }
 }
