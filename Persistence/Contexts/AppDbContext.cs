@@ -32,6 +32,7 @@ namespace aah_real_cms_api.Persistence.Contexts
             builder.Entity<Post>().ToTable("Posts");
             builder.Entity<Post>().HasKey(p => p.Id);
             builder.Entity<Post>().Property(p => p.PublicationDate);
+            builder.Entity<Post>().HasOne(p => p.Author).WithOne();
             builder.Entity<Post>().Property(p => p.Title).IsRequired().HasMaxLength(50);
             builder.Entity<Post>().Property(p => p.Text);
 
