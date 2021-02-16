@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace aah_real_cms_api.Domain.Models
 {
@@ -19,5 +20,7 @@ namespace aah_real_cms_api.Domain.Models
         }
 
         public string BioBlurb { get; set; }
+
+        public IList<Post> Posts { get; set; } = new List<Post>();
     }
 }

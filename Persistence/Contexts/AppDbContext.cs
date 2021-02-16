@@ -23,6 +23,7 @@ namespace aah_real_cms_api.Persistence.Contexts
             builder.Entity<Author>().Property(p => p.Name).IsRequired();
             builder.Entity<Author>().Property(p => p.Surname).IsRequired();
             builder.Entity<Author>().Property(p => p.BioBlurb);
+            builder.Entity<Author>().HasMany(p => p.Posts).WithOne(p => p.Author).HasForeignKey(p => p.AuthorId);
 
             builder.Entity<Author>().HasData
             (
@@ -32,9 +33,9 @@ namespace aah_real_cms_api.Persistence.Contexts
             builder.Entity<Post>().ToTable("Posts");
             builder.Entity<Post>().HasKey(p => p.PostId);
             builder.Entity<Post>().Property(p => p.PublicationDate);
-            builder.Entity<Post>().HasOne<Author>().WithMany().HasForeignKey(p => p.AuthorId);
             builder.Entity<Post>().Property(p => p.Title).IsRequired().HasMaxLength(50);
             builder.Entity<Post>().Property(p => p.Text);
+            builder.Entity<Post>().HasOne(p => p.Author).WithMany(p => p.Posts).HasForeignKey(p => p.AuthorId);
             builder.Entity<Post>().HasData
             (
                 new Post { PostId = 100, AuthorId = 100, PublicationDate = DateTime.Parse("05/22/1987"), Title = "First Post", Text = "This post is the real deal." }
