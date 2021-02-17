@@ -21,6 +21,7 @@ namespace aah_real_cms_api.Domain.Models
 
         public string BioBlurb { get; set; }
 
-        public IList<Post> Posts { get; set; } = new List<Post>();
+        public List<Post> Posts { get; set; }
+
     }
 }

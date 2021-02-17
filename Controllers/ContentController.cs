@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using aah_real_cms_api.Domain.DTOs;
 using aah_real_cms_api.Domain.Models;
 using aah_real_cms_api.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace aah_real_cms_api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Post>> Content()
+        public async Task<IEnumerable<PostDto>> Content()
         {
             _logger.Log(LogLevel.Debug, "hit contentService.getPosts");
             return await _contentService.GetPosts();

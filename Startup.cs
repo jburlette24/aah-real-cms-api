@@ -39,8 +39,10 @@ namespace aah_real_cms_api
                         builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
                     });
                 });
-            services.AddDbContext<AppDbContext>(options => {
+            services.AddDbContext<AppDbContext>(options =>
+            {
                 options.UseInMemoryDatabase("aah-real-cms-api-in-memory");
+
             });
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IContentService, ContentService>();
